@@ -1,0 +1,106 @@
+<!-- 0n n   "//ניסוי -->
+<div style="display:inline-block;position: relative; right: 5vw;top:2vh;width:50vw">
+  <div class="members" style="display: inline-block; position: relative; right: 5vw;width:25vw">
+    <mat-card class="example-card">
+      <p>מספר החברים בקבוצה {{MembersofChat.length}}</p>
+
+      <div *ngFor="let item of MembersofChat" style="border-bottom: pink 2px solid">
+        <mat-icon>contact_mail</mat-icon>
+        <div mat-card-avatar class="example-header-image">{{item.NameUser[0]}}</div>
+        <span>{{item.MailUser}}</span>
+      </div>
+    </mat-card>
+  </div>
+
+
+  <!-- הודעות חדשות <p>{{NumNewChat}}</p>  -->
+  <div class="messageChat" style="display: inline-block;position: absolute; top:1vw">
+    <mat-icon>chat</mat-icon>
+    <mat-form-field appearance="outline">
+      <mat-label>הודעה חדשה</mat-label>
+ <!-- maxlength="45"rows="2"cols="22" -->
+ <!--  -->
+      <textarea type="text"   matInput [(ngModel)]="MessageChat.Message"(keyup)="Send($event)" ></textarea>
+    </mat-form-field >
+    <br>
+    <button style="position: absolute;left:0" mat-raised-button [disabled]="MessageChat.Message===''" (click)="CreateMessageChat()"
+      color="accent" >
+      <mat-icon>chat</mat-icon> שלח
+    </button>
+    <div class="managerMail" *ngIf="IsManager==true" style="margin-top:2vh">
+      <mat-form-field>
+        <textarea type="text" matInput [(ngModel)]="MailToRegisterGroup" placeholder="רק למנהל-מייל לחברים בקבוצה"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="accent" [disabled]="MailToRegisterGroup===''">
+        <mat-icon matToolTip="שליחת מייל לחברים" (click)="SendMailToregisterGroup()">mail</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="chatTable" style="display:inline-block;position: relative; top:4vw;">
+  <div class="example-container mat-elevation-z8">
+    <div class="example-table-container">
+      <table mat-table [dataSource]="chatList" class="mat-elevation-z8">
+        <ng-container matColumnDef="NumReader">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element;let index">
+            <mat-icon matBadge={{element.NumReader}} matTooltip="קראו את ההודעה" style="font-size:1.5vw"
+              matBadgePosition="before" matBadgeColor="accent">
+              chrome_reader_mode</mat-icon>
+          </td>
+          <!-- class="mat-elevation-z8" -->
+          <!-- style="border-left: 1px rgba(0,0,0,.12) solid;text-align: right" -->
+        </ng-container>
+        <ng-container matColumnDef="Read">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon matTooltip="קראתי" *ngIf="element.Read===false" (click)="func.ReadMessageChat(element)">drafts</mat-icon>
+          </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="DateChat">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element" style="padding: 0px 13px 0px 13px">
+            <span *ngIf="compareDate(element.DateChat)===0">
+              {{element.DateChat | date :'HH:mm'}}
+            </span>
+            <span *ngIf="compareDate(element.DateChat)===1">אתמול</span>
+            <span *ngIf="compareDate(element.DateChat)===-1">
+              {{element.DateChat | date :'dd/MM'}}
+            </span>
+          </td>
+        </ng-container> -->
+        <ng-container matColumnDef="Message">
+          <th mat-header-cell *matHeaderCellDef>{{chatList[0].NameGroup}}</th>
+
+          <td mat-cell *matCellDef="let element">
+            <div class="chatColumn">
+              <p *ngIf="element.Read===true"> {{element.Message}}</p>
+              <p *ngIf="element.Read===false"><b>{{element.Message}}</b></p>
+
+            </div>
+            <div style="text-align:left">
+              <span *ngIf="compareDate(element.DateChat)===0">
+                {{element.DateChat | date :'HH:mm'}} | {{element.NameUser}}
+              </span>
+              <span *ngIf="compareDate(element.DateChat)===1">אתמול | {{element.NameUser}}</span>
+              <span *ngIf="compareDate(element.DateChat)===-1">
+                {{element.DateChat | date :'dd/MM'}} | {{element.NameUser}}
+              </span>
+            </div>
+          </td>
+
+        </ng-container>
+        <!-- <ng-container matColumnDef="MailUser">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"> {{element.NameUser}} </td>
+        </ng-container> -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div style="height:4vh;margin-bottom:7vh;"> 
+  &nbsp;
+  </div>

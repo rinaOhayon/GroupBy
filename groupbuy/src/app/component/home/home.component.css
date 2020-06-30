@@ -1,0 +1,245 @@
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+/* .pictureSlide{
+
+} */
+.divExplain{
+    height: 15vw;
+    width: 15vw;
+    background-color:#d2d2d2;
+    position: relative;
+    /* right: 0; */
+    display: inline-block;
+    margin-left: 2vw;
+    margin-bottom: 4vh;
+}
+.GroupByRules{
+    position: relative;
+    right: 25vw;
+    width: 51vw;
+    top: 10vh;
+}
+.icon{
+    width: 4.5vw;
+    height: 4.5vw;
+    position: relative;
+    right: 5.25vw;
+    top: 1.5vw;
+    display: block;
+}
+.titleIcon{
+    text-align: center;
+    display: block;
+    position: relative;
+    top: 1.5vh;
+}
+.textTitleIcon{
+    text-align: center;
+font-weight: bold;
+}
+.textIcon{
+    text-align: justify;
+    display: block;
+    position: relative;
+    width: 12vw;
+    right: 1.5vw;
+}
+.aaaaaaa{
+    width: 48vw;
+    height: 30vh;
+    /* background-color: bisque; */
+    border-top: 3px dashed rgb(202, 199, 199);
+    position: relative;
+    right: 0.5vw;
+    padding: 0;
+    margin: 0;
+}
+.image{
+    width: 22vw;
+    height: 14vw;
+    position: relative;
+    /* right: 2vw; */
+    top: 4vh;
+    display: inline-block;
+}
+.img{
+    width: 100%;
+    height: 100%;
+    border: 3px solid #eb3b52;
+
+}
+.wordOfImage{
+    display: inline-block;
+position: absolute;
+/* top: 4vh; */
+padding-right: 3vw;
+}
+/* html {
+    position: relative;
+    min-height: 150%;
+}
+body {
+    margin: 0 0 15vh; /* bottom = footer height 
+}*/
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    /* height: 15vh; */
+    width: 100%;
+} 
+/* תמונה */
+
+
+/* html, body { background: #333 url("https://codepen.io/images/classy_fabric.png"); direction: ltr; } */
+
+.slides {
+    padding: 0;
+    width: 32vw;
+    height: 43vh;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top:5vh;
+}
+
+.slides * {
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.slides input { display: none; }
+
+.slide-container { display: block; }
+
+.slide {
+    top: 0;
+    opacity: 0;
+    width: 609px;
+    height: 420px;
+    display: block;
+    position: absolute;
+
+    transform: scale(0);
+
+    transition: all .7s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+}
+
+.nav label {
+    width: 200px;
+    height: 100%;
+    display: none;
+    position: absolute;
+
+	  opacity: 0;
+    z-index: 9;
+    cursor: pointer;
+
+    transition: opacity .2s;
+
+    color: #FFF;
+    font-size: 156pt;
+    text-align: center;
+    line-height: 380px;
+    font-family: "Varela Round", sans-serif;
+    background-color: rgba(255, 255, 255, .3);
+    text-shadow: 0px 0px 15px rgb(119, 119, 119);
+}
+
+.slide:hover + .nav label { opacity: 0.5; }
+
+.nav label:hover { opacity: 1; }
+
+.nav .next { left: 0; }
+
+input:checked + .slide-container  .slide {
+    opacity: 1;
+
+    transform: scale(1);
+
+    transition: opacity 1s ease-in-out;
+}
+
+input:checked + .slide-container .nav label { display: block; }
+
+.nav-dots {
+	width: 100%;
+	bottom: 9px;
+	height: 11px;
+	display: block;
+	position: absolute;
+	text-align: center;
+}
+
+.nav-dots .nav-dot {
+	top: -5px;
+	width: 11px;
+	height: 11px;
+	margin: 0 4px;
+	position: relative;
+	border-radius: 100%;
+	display: inline-block;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.nav-dots .nav-dot:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+input#img-1:checked ~ .nav-dots label#img-dot-1,
+input#img-2:checked ~ .nav-dots label#img-dot-2,
+input#img-3:checked ~ .nav-dots label#img-dot-3,
+input#img-4:checked ~ .nav-dots label#img-dot-4,
+input#img-5:checked ~ .nav-dots label#img-dot-5,
+input#img-6:checked ~ .nav-dots label#img-dot-6 {
+	background: rgba(0, 0, 0, 0.8);
+}
+
+/* div.pullUp a:before
+{
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0px;
+    bottom: 0px;
+    content: '';
+    background: #FFF;
+    opacity: 0.3;
+    transition: all 0.3s;
+}
+
+div.pullUp a:hover:before
+{
+    height: 100%;
+}
+div.container
+{
+    font-family: Raleway;
+    margin: 0 auto;
+	padding: 10em 3em;
+	text-align: center;
+}
+
+div.container a
+{
+    color: #FFF;
+    text-decoration: none;
+    font: 20px Raleway;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+.lime{
+    background-color: grey;
+} */

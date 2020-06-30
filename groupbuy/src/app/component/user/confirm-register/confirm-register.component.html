@@ -1,0 +1,15 @@
+<p>
+  confirm-register works!
+</p>
+<div *ngIf="!message">
+  <h1 >{{user.NameUser}}</h1>
+  <button mat-raised-button color="primary" (click)="Login()">רישום</button>
+</div>
+<h1 *ngIf="message">{{message}}</h1>
+
+
+<!-- IdUser:number;
+NameUser:string;
+Password:string;
+Email:string;
+Phone:string; -->

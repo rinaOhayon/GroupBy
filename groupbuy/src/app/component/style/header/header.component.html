@@ -1,0 +1,51 @@
+<!-- todo להעתיק הכל -->
+<nav class="navbar">
+  <div class="container">
+    <div class="logo">
+      <img src="../../../../assets/logo-finish.png" style="width:100%">
+    </div>
+    <ul class="nav nav-right">
+      <li id="home" (click)="color($event.target)"  [routerLink]="['/']">דף הבית</li>
+      <!-- <li><a [routerLink]="['/login']">login</a></li> -->
+      <li (click)="OpenDialogRegister();Lastcolor($event.target)">כניסה</li>
+      <span style="display: inline-block" *ngIf="locals===false">
+        <li  (click)="openMessageInCreateGroup();color($event.target)">צור קבוצה</li>
+      </span>
+      <span style="display: inline-block" *ngIf="locals===true">
+        <li id="createGroup"(click)="color($event.target)" [routerLink]="['/group-create']">צור קבוצה</li>
+      </span>
+      <li id="GroupView" (click)="color($event.target)" [routerLink]="['/group-view']">צפה בקבוצות</li>
+      <!-- <li><a [routerLink]="['/subscibe-create']">צור בקשה</a></li> -->
+      <!-- <li><a [routerLink]="['/subscibe-update']">subsrcibe-update</a></li> -->
+      <!-- <li><a [routerLink]="['/subscibe-view']">subsrcibe-view</a></li> -->
+      <li id="SubscribeView" (click)="color($event.target)" [routerLink]="['/subscibe-view-table']">צפה בבקשות</li>
+      <span style="display: inline-block" *ngIf="locals===true">
+        <li id="performance" (click)="color($event.target)" [routerLink]="['/performance']">הביצועים שלי</li>
+        <!-- <div *ngIf="locals===true" style="left:20vw;position:absolute;"> -->
+
+        <li id="ClosedGroup" (click)="color($event.target)" [routerLink]="['/created-group']">קבוצות סגורות</li>
+      </span>
+
+      <!-- </div> -->
+    </ul>
+  </div>
+</nav>
+<div *ngIf="locals===true" style="left:20vw;position:absolute;">
+  <p class="chatLink" [routerLink]="['/created-group']" matBadge={{NumNewMessageChat}} matBadgePosition="before"
+    matBadgeColor="accent">הודעות חדשות</p>
+</div>
+<div *ngIf="NumItemBasket==0" style="left:30vw;position:absolute;">
+  <p>אין קבוצות בסל</p>
+</div>
+<div *ngIf="NumItemBasket>0" style="left:30vw;position:absolute;cursor: pointer;">
+  <p [routerLink]="['/basket']"> {{NumItemBasket}} קבוצות בסל </p>
+</div>
+
+<div *ngIf="locals===true" style="left:35vw;position:absolute;cursor: pointer;">
+  <p (click)="GoTOPerformance()">{{nameUser}} |</p>
+  <p (click)="Exit()">יציאה</p>
+</div>
+<div class="banner">
+  <img src="../../../../assets/banner.png" style="height:100%;width:100%">
+</div>
+<router-outlet></router-outlet>

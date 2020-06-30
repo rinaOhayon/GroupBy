@@ -1,0 +1,71 @@
+<div style="width:50vw;text-align: center;position:relative;right: 23vw;margin-top:5vh">
+  <div>
+    <h2 style="color:grey"> החברים בקבוצה שלך </h2>
+   
+    <mat-form-field appearance="outline">
+        <textarea type="text"  matInput  [(ngModel)]="MailToRegisterGroup" 
+          placeholder="מייל לחברים בקבוצה"></textarea>
+    </mat-form-field>
+    
+    <button  mat-raised-button color="accent" style="margin-right:8px"  matToolTip="מייל לחבר">
+      שלח
+    <mat-icon matToolTip="שליחת מייל לחברים" (click)="SendMailToregisterGroup()">mail</mat-icon>
+  </button>
+  </div>
+
+  <table mat-table [dataSource]="members" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="Index">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center; border-left: 1px rgba(0,0,0,.12) solid"></th>
+      <td mat-cell *matCellDef="let element; let i = index;"
+        style="border-left: 1px rgba(0,0,0,.12) solid;text-align: right"> {{i}} </td>
+        <td 
+        style="border-left: 1px rgba(0,0,0,.12) solid;text-align: right"> frtryt</td>
+    </ng-container>
+
+    <ng-container matColumnDef="NameUser">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">שם</th>
+      <td mat-cell *matCellDef="let element"> {{element.NameUser}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="QuantityRegisters">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">מס' נרשמים</th>
+      <td mat-cell *matCellDef="let element"> {{element.QuantityRegisters}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DateJoin">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">תאריך הצטרפות</th>
+      <td mat-cell *matCellDef="let element"> {{element.DateJoin}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="MailUser">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">מייל</th>
+      <td mat-cell *matCellDef="let element"> {{element.MailUser}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="GetMessage">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">קבל הודעה</th>
+      <td mat-cell *matCellDef="let element">
+          <mat-checkbox name="matCheckBox" [checked]="element.GetMessage" disabled></mat-checkbox>
+        
+      </td>
+    </ng-container>
+ <ng-container matColumnDef="sendmail" >
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">שלח מייל</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.GetMessage==true">
+        <mat-form-field >
+          <textarea type="text"  matInput  [(ngModel)]="MailToOneRegisterGroup" 
+            placeholder="מייל לחבר זה"></textarea>
+      </mat-form-field>
+      <button  mat-raised-button color="accent" style="margin-right:8px"  matToolTip="מייל לחבר">
+        שלח
+      <mat-icon matToolTip="מייל לחבר" (click)="SendMailToOneRegisterGroup(element.MailUser)" >mail</mat-icon>
+    </button>  
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

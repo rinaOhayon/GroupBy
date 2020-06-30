@@ -1,0 +1,75 @@
+/* :host{
+    width: 60vw;
+    /* background-image:  
+    display: inline-block;
+    position: absolute;
+    left: 15vw; 
+    top:25vh;
+  }  */
+  /* label{
+      /* left:5vw; s
+      margin: 0vw 10vw 3vw 1vh;
+      font-family: 'Karla', sans-serif;
+      font-size: 2.3vh;
+  }
+  mat-form-field{
+      margin: 0vw 15vw 3vw 0vw;    
+  } */
+  .example-card {
+    width: 40vw;
+    display: inline-block;
+
+  }
+  .mat-card{
+      align-items: center;
+      right: 3vw;
+  }
+  ::ng-deep .mat-step-header .mat-step-icon-selected,.mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: #ff4081;
+ }
+ /* .mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    width: 25vw;
+}
+.field-infix{
+    width: 25vw;
+
+} */
+  
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    width:15vw;
+}
+/* הגדרת הדיו הוראות  */
+.focusMessageClass
+{
+ align-items:center;
+position: absolute;
+right:22vw;
+top:18vh;
+display: inline-block;
+border:2px solid #eb3b52;
+width: 13vw;
+height: 10vh;
+display: inline-block;
+ top:5vh;
+ box-shadow:aquamarine;
+  transition: 0.5s;
+ 
+}
+.paypal-button {
+    border: 1px solid transparent;
+    border-radius: 0 3px 3px 0;
+    position: relative;
+    width: 40%;
+    box-sizing: border-box;
+    border: none;
+    vertical-align: top;
+    cursor: pointer;
+    overflow: hidden;
+    left: 59vw;
+}

@@ -1,0 +1,25 @@
+<div id="groupRegister">
+<h2>{{name}}</h2>
+<h3>{{subject}}</h3>
+<form #RegisterGroupForm="ngForm">
+
+  <label for="quantity">הכנס מס' נרשמים</label>
+  <mat-form-field>
+    <input type="number"  #fr matInput [(ngModel)]="r.QuantityRegisters" [formControl]="quantityMemberRegister" pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
+      min="1" onkeypress="return event.charCode != 45" value="1" placeholder="מספר הנרשמים" name="quantity1" required>
+  </mat-form-field>
+  <mat-error name="materror" *ngIf="r.QuantityRegisters > different">מספר המקומות שנותרו הוא {{different}}</mat-error>
+
+  <br><br>
+  <mat-checkbox name="matCheckBox" [(ngModel)]="r.GetMessage">האם ברצונך לקבל הודעה ממנהל הקבוצה?</mat-checkbox>
+  <br><br>
+  <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
+  <button mat-raised-button style="background-color:#eb3b52;color: white;margin:3vw" (click)="RegisterGroup()" [disabled]="isValid==true||!RegisterGroupForm.form.valid || r.QuantityRegisters > different"
+    value="הרשם לקבוצה" matTooltip="הרשם">הרשם לקבוצה</button>
+  <span></span> 
+  <button mat-raised-button matToolip="ביטול" [mat-dialog-close]="true" style="background-color:grey;color:white" (click)="cancel()">ביטול</button>
+
+</form>
+
+</div>

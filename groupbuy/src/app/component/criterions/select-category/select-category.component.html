@@ -1,0 +1,16 @@
+<form [formGroup]="stateForm">
+  <mat-form-field>
+    {{selectGroup}}
+    <input type="text" [(ngModel)]="selectText" (focus)="focusCategory('קטגוריה')" matInput placeholder="בחר קטגוריה" formControlName="CategoryChildren" required [matAutocomplete]="autoGroup" id="t1" >
+    <button mat-button *ngIf="selectText" matSuffix mat-icon-button aria-label="Clear" (click)="selectText=''">
+      <mat-icon matSuffix>close</mat-icon>
+    </button>
+      <mat-autocomplete  #autoGroup="matAutocomplete" (optionSelected)="onselectedOption($event)" [displayWith]="valueMapper">
+        <mat-optgroup *ngFor="let category of CategoryOption | async" [label]="category.NameParent" style="text-align:right">
+          <mat-option *ngFor="let children of category.Children" [value]="children.NameCategory">
+            {{children.NameCategory}}
+          </mat-option>
+      </mat-optgroup>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

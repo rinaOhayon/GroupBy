@@ -1,0 +1,11 @@
+:host{
+    left:15vw;
+    /* margin: 0vw 10vw 3vw 1vh; */
+    background-color: blue;
+    top:25vh;
+}
+.mat-form-field{
+    /* margin: 0vw 15vw 3vw 1vh; */
+    width:15vw;
+}
+

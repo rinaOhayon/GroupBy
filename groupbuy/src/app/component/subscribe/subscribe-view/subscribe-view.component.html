@@ -1,0 +1,46 @@
+
+<form>
+  <div>
+      
+        <input class="md-search" placeholder="Search..." (keyup)="search()" [(ngModel)]="searchBy" name="search" />
+    <button (click)="search()"></button>
+      </div>
+    <div>  
+   <div *ngIf="searchSubscribeList.length>0">
+        <mat-grid-list cols="3" >
+    {{searchSubscribeList.length}}
+    <mat-grid-tile [rowspan]=2 *ngFor="let item of searchSubscribeList">
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{item.NameSubscribe}}</mat-card-title>
+        <mat-card-subtitle> בקשה מס' {{item.IdSubscribe}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <label> תאריך הבקשה </label>
+        <p>{{item.DateCreateSubscribe}}</p>
+        <label>תאור חופשי</label>
+        <p>{{item.TextFree}}</p>
+        <label>קטגוריה</label>
+        <p>{{item.IdCategory}}</p>
+        <div *ngFor="let itemCategory of item.CriterionSubscribe">
+          <label>{{itemCategory.KeyCriterion}}</label>
+          <p>{{itemCategory.ValueCriterion}}</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div *ngIf="idUser===item.IdUser">
+          <button type="button" (click)="DeleteSubscibe(item.IdSubscribe)">הסרת הבקשה</button>
+        </div>
+        <div *ngIf="idUser===item.IdUser">
+          <button type="button" (click)="UpdateopenDialogGroup(item)">עדכון הבקשה</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+  </div>
+
+</form>

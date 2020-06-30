@@ -1,0 +1,97 @@
+<div style="position: relative;right:40vw;top:2vh">
+  <div class="logo">
+    <img src="../../../../../assets/logo-finish.png" style="width:100%">
+  </div>
+  <div style="display: inline-block">
+  <h1>קבוצות סגורות</h1>
+</div>
+</div>
+<div style="position: relative;right:25vw;top: 3vh;height: 53vh;">
+  <form>
+    <div style="width: 50vw;right: 25vw;">
+      <mat-grid-list cols="3" rowHeight="240px">
+        <mat-grid-tile [colspan]="1" [rowspan]=2 *ngFor="let item of DataPaginatorListClosedGroup">
+          <mat-card class="example-card">
+            <mat-card-header style="height: 6vh;white-space: nowrap;">
+              <!-- {{GetFirstLetter(item.NameManager[0])}} -->
+              <!-- [style.background]="'url(/images/' + trls.img + ')'" -->
+              <!-- [ngStyle]="{'background-image': getUrl()}" -->
+              <div mat-card-avatar class="example-header-image">{{item.NameGroup[0]}}</div>
+              <mat-card-title>{{item.NameGroup}}</mat-card-title>
+              <mat-card-subtitle>קבוצה {{item.IdGroup}}</mat-card-subtitle>
+              <!-- <div *ngIf="!item.basket">
+              <mat-icon (click)="func.addToBasket(item)" style="cursor: pointer" matTooltip="הוסף לסל">add_shopping_cart
+              </mat-icon>
+            </div>
+            <div *ngIf="item.basket">
+              <mat-icon (click)="func.removeFromBasket(item)" style="cursor: pointer" matTooltip="הסר מהסל">
+                remove_shopping_cart</mat-icon>
+            </div> -->
+            </mat-card-header>
+            <div style="display:inline-block;">
+              <img mat-card-image [src]="item.imageSrc" id="ImageDatails" (mouseover)="changedivImage($event)"
+                style="height:15vh;width: 12.5vw;margin:auto" alt="item.imageSrc">
+            </div>
+            <mat-card-content style="height:16vh;padding-right: 1.5vw;">
+              <mat-icon matTooltip="תאריך אחרון לרישום">event_note</mat-icon>
+              <!-- <p>{{item.DateCreateGroup | date: 'dd/MM/yyyy'}}</p><br>
+            <label> תאריך סגירת הקבוצה</label> -->
+              <p>{{item.DeadlineGroup | date: 'dd/MM/yyyy'}}</p><br>
+              <mat-icon class="md48" matTooltip="קטגוריה">star_border</mat-icon>
+              <p>{{item.CategorySelected.NameCategory}}</p><br>
+              <!-- <label>קריטריונים</label> -->
+              <div *ngFor="let criterion of item.CriterionList">
+                <div *ngIf="criterion.KeyCriterion==='מחיר רגיל'" style="display:inline-block;position: relative">
+                  <mat-icon matTooltip={{criterion.KeyCriterion}}>{{icons[criterion.KeyCriterion]}}</mat-icon>
+                  <p>{{criterion.ValueCriterion}}</p>
+                </div>
+                <!-- <div *ngIf="criterion.KeyCriterion==='מחיר לאחר הנחה'" style="display:inline-block">
+                  <mat-icon matTooltip={{criterion.KeyCriterion}}>{{icons[criterion.KeyCriterion]}}</mat-icon>
+                  <p>{{criterion.ValueCriterion}}</p>&&criterion.KeyCriterion!='מחיר לאחר הנחה'
+              </div> -->
+                <div *ngIf="criterion.KeyCriterion!='מחיר רגיל'">
+
+                  <mat-icon matTooltip={{criterion.KeyCriterion}}>{{icons[criterion.KeyCriterion]}}</mat-icon>
+                  <p>{{criterion.ValueCriterion}}</p>
+                </div>
+
+              </div>
+
+              <mat-icon matBadge={{item.NumMemberRegister}} style="display:inline-block" matTooltip="נרשמים לקבוצה"
+                style="font-size:1.5vw" matBadgePosition="before" matBadgeColor="accent">group</mat-icon>
+              מתוך <p>{{item.NumMembers}}</p><br>
+            </mat-card-content>
+            <mat-card-footer style="border-top:solid 1px rgb(51, 50, 50)">
+              <div style="align-items:baseline;margin-right: 1vw;color:grey">
+                <mat-icon class="activeIcons" (click)="func.GetDetails(item)" matTooltip="פרטים">details</mat-icon>
+                <!-- <button mat-stroked-button color="accent" (click)=GetDetails(item)> {{item.IdGroup}}קבל פרטי קבוצה -
+        </button> -->
+
+                <!-- אם נרשם לקבוצה זו יש לו אפשרות לערוך פרטי רישום או למחוק בתנאי שהוא לא מנהל הקבוצה -->
+                <div *ngIf="item.IdManager==idUserSurfing" style="display:inline-block">
+                  <mat-icon class="activeIcons" (click)="AllRegisterOfGroup(item)" matTooltip="צפה בחברים">group
+                  </mat-icon>
+                </div>
+                <mat-icon class="activeIcons" matBadge={{item.NewMessageCount}} matBadgePosition="before"
+                  matBadgeColor="accent" (click)="ChatOfGroup(item)" matTooltip="הודעות חדשות">mail</mat-icon>
+                <mat-icon class="activeIcons" matBadge={{item.ChatNotRead}} matBadgePosition="before"
+                  matBadgeColor="accent" (click)="ChatOfGroup(item)" matTooltip="הודעות שלא נקראו">mail</mat-icon>
+
+              </div>
+            </mat-card-footer>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </form>
+
+
+</div>
+<div style="position: relative;left: 40vw;top: 5vh">
+  <mat-paginator [length]="length" [pageSize]="3" (page)="pageEvent=Getdata($event)" [hidePageSize]="false"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>
+<div style="height:4vh;margin-bottom:7vh;">
+  &nbsp;
+</div>

@@ -1,0 +1,87 @@
+<div style="width:65vw;position:relative;right:18vw">
+<mat-grid-list cols="3" >
+   <mat-grid-tile>
+    <div id="imgDiv" >
+  <img mat-card-image [src]="groupDetails.imageSrc" style="width:100%;height:100%;" id="ImageDatails"  alt="item.imageSrc">
+</div>
+  </mat-grid-tile>
+  <mat-grid-tile  [colspan]="2">
+    <div id="accordinDiv">
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title matTooltip="פרטי קבוצה">
+          פרטי קבוצה
+        </mat-panel-title>
+        <mat-panel-description>
+         <label> {{groupDetails.NameGroup}}</label>
+        
+         
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div id="details"> 
+        <label >תאור קבוצה</label>:
+         <label>{{groupDetails.FreeDescription}}</label> <br>
+         <label>מספר החברים בקבוצה</label>:
+         <label>{{groupDetails.NumMembersGroup}}</label><br>
+          <mat-icon class="md48" matTooltip="קטגוריה">star_border</mat-icon>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+         <label> {{groupDetails.CategorySelected.NameCategory}}</label><br>
+      
+         <mat-icon matTooltip="תאריך פתיחת הקבוצה">event_note</mat-icon>
+         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+         <label>תאריך פתיחת הקבוצה</label>:
+        <label>{{groupDetails.DateCreateGroup | date: 'dd/MM/yyyy'}}</label>
+        <br>
+       <mat-icon matTooltip="תאריך אחרון לרישום">event_note</mat-icon>
+       <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+       <label>תאריך אחרון לרישום</label>:
+         <label> {{groupDetails.DeadlineGroup | date: 'dd/MM/yyyy'}}</label>
+        <br>
+      
+  </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title matTooltip="פרטי הקבוצה">
+     פרטים נוספים
+        </mat-panel-title>
+        <mat-panel-description>
+       קרטריונים
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+           <div *ngIf="groupDetails!=null">
+        <div *ngFor="let item of groupDetails.CriterionList">
+            <mat-icon matTooltip={{item.KeyCriterion}}>{{icons[item.KeyCriterion]}}</mat-icon>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <label>{{item.KeyCriterion}}</label>:
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <label>{{item.ValueCriterion}}</label>
+          <br>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    
+  </mat-accordion>
+
+</div>
+  </mat-grid-tile>
+
+</mat-grid-list>
+<div id="LinkDetails"><a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="GroupBuy.html">
+  <mat-icon matTooltip="הורדת הקובץ" style="margin-left:2vw;font-size: 35px">save_alt</mat-icon></a>
+
+    <mat-icon (click)="sendMailAlert()"style="font-size: 40px" matTooltip="שליחת מייל למנהל הקבוצה">contact_mail</mat-icon>
+    </div>
+  </div>
+<!-- IdGroup:number;
+IdManager:number;
+NameGroup:string;
+DateCreateGroup:Date;
+NumMembersGroup:number;
+DeadlineGroup:Date;
+IdCategory:number;
+StatusGroup:number;
+FreeDescription:string;
+Image:string;
+IdTypeGroup:number; -->

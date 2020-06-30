@@ -1,0 +1,17 @@
+
+<mat-form-field>
+<mat-label>חיפוש קטגוריה</mat-label>
+
+<select style="display: inline-block" [(ngModel)]="idCategory" matNativeControl  (change)=ChooseCategory() >
+  <option *ngFor="let i of c" [ngValue]="i.IdCategory" >{{i.NameCategory}}</option>
+</select>
+</mat-form-field>
+
+  <mat-form-field>
+<mat-label>חיפוש תת קטגוריה</mat-label>
+  <select  [(ngModel)]="idSubCategory" matNativeControl (change)=ChooseSubCategory()>
+    <option *ngFor="let item of subcategory" [ngValue]="item.IdCategory">{{item.NameCategory}}</option>
+  </select>
+</mat-form-field>
+
+

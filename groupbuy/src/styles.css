@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";  
+.mat-form-field-infix{
+    width: 25vw;
+}
+
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    text-align: right;
+}
+::ng-deep .mat-form-field-infix{
+    text-align: right;
+ }
+ body{
+    font-family: 'Assistant';
+    overflow-x: hidden;
+ }

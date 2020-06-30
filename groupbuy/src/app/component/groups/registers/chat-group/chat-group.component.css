@@ -1,0 +1,50 @@
+table{
+  widows: 100%;
+}
+.example-header-image {
+    /* background-image: url('image/MP084.JPG');  */
+   background-size: cover;
+   background-color: darkkhaki;
+   /* font-family: 'Karla', sans-serif; */
+font-size: 30px;
+font-weight: bold;
+text-align: center;
+ }
+ .example-card {
+    width: 13vw;
+      }
+  .example-container {
+   position: relative;
+   min-height: 300px;
+ }
+ 
+ .example-table-container {
+   position: relative;
+   max-height: 400px;
+  overflow-y: scroll;
+   
+ }
+ .mat-cell {
+ padding-top: 1vh;
+ padding-right: 2vh;
+ padding-left: 4vh;
+ padding-bottom: 1vh;
+  border-bottom: none;
+  max-width:20vw;
+  min-width: 3vw;
+}
+.mat-header-cell {   
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  padding-right: 4vh;
+}
+/* .mat-cell:last-of-type{
+  padding-top: 5vh;
+  padding-left: -1vh;
+} */
+.chatColumn{
+  background-color: #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}

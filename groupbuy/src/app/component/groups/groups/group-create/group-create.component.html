@@ -1,0 +1,162 @@
+<div *ngIf="locals===false">
+  <h2>לאחר שתירשם לאתר יופיעו כאן הביצועים שלך</h2>
+  <button mat-raised-button color="primary" (click)="Register()">רישום</button>
+
+</div>
+
+
+<div style="width: 50vw;position: relative;right:25vw;top:5vh;">
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step label="" [completed]="myForm1.valid&&select.selectText!=null&&select.selectedCategory?.NameCategory===select.selectText">
+    <form #myForm1="ngForm">
+      <ng-template matStepLabel>מלא פרטי הקבוצה</ng-template>
+      <mat-card class="example-card">
+        <mat-card-content>
+          <mat-form-field >
+            <input placeholder="שם קבוצה" (focus)="focus(1,'שם קבוצה')" matInput type="text" [(ngModel)]="g.NameGroup" id="NameGroup" name="NameGroup"
+              required >
+            <button mat-button *ngIf="g.NameGroup" matSuffix mat-icon-button aria-label="Clear" (click)="g.NameGroup=''">
+              <mat-icon matSuffix>close</mat-icon>
+            </button>
+            <!-- <button mat-button *ngIf="g.NameGroup" matSuffix mat-icon-button aria-label="Clear" (click)="g.NameGroup=''">
+              <mat-icon matSuffix>close</mat-icon>
+            </button> -->
+          </mat-form-field>
+          <br>
+ 
+          <mat-form-field>
+            <input type="number"  [(ngModel)]="g.NumMembersGroup" matInput id="NumMembersGroup" name="NumMembersGroup" (focus)="focus(1,'מספר החברים')"
+              [formControl]="quantityMember" pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$" min="1" onkeypress="return event.charCode != 45"
+              placeholder="מספר החברים" required>
+          </mat-form-field>
+          <br>
+
+          <mat-form-field>
+            <textarea type="text" [(ngModel)]="g.FreeDescription"  (focus)="focus(1,'תאור הקבוצה')" matInput id="FreeDescription" name="FreeDescription"
+              placeholder="תאור חופשי"></textarea>
+            <button mat-button *ngIf="g.FreeDescription" matSuffix mat-icon-button aria-label="Clear" (click)="g.FreeDescription=''">
+              <mat-icon matSuffix>close</mat-icon>
+            </button>
+          </mat-form-field><br>
+          <app-select-category #selectCat (CategorySelected)="categoryChoose($event)" (focuscategory)="focus(1,$event)"></app-select-category>
+          <mat-error *ngIf="select.selectText&&!select.selectedCategory">בחר קטגוריה תקינה</mat-error>
+          <div>
+            <button mat-button style="background-color:rgb(160, 160, 160)" matStepperNext matTooltip="הבא" [disabled]="quantityMember.errors||!myForm1.valid||select.selectText==null||select.selectedCategory?.NameCategory!=select.selectText">הבא</button>
+           
+          </div>
+        </mat-card-content>
+        <mat-card id="focusMessage1"class="focusMessageClass" >
+          <h3 style="color:rgb(160, 160, 160)">{{InstructionsInput['openCreate']}}</h3>
+        </mat-card>
+      </mat-card>
+   
+    </form>
+  </mat-step>
+  <mat-step [completed]="myForm1.valid&&select.selectText!=null&&select.selectedCategory?.NameCategory===select.selectText">
+    <form>
+      <ng-template matStepLabel>קריטריונים</ng-template>
+      <mat-card class="example-card">
+        <mat-card-content>
+          <label>קריטריונים:</label>
+          <br>
+          <div *ngFor="let item of g.CriterionList; let i=index">
+            <div *ngIf="i<length">
+
+              <mat-form-field *ngIf="item.KeyCriterion!='מחיר רגיל'&&item.KeyCriterion!='מחיר לאחר הנחה'">
+                <input type="text" matInput [(ngModel)]="item.ValueCriterion" name="ValueCriterion" placeholder={{item.KeyCriterion}} (focus)="focus(2,item.KeyCriterion)">
+              </mat-form-field>
+              <mat-form-field *ngIf="item.KeyCriterion==='מחיר רגיל'||item.KeyCriterion=='מחיר לאחר הנחה'">
+                <input type="number" matInput [(ngModel)]="item.ValueCriterion" name="ValueCriterion" placeholder={{item.KeyCriterion}} (focus)="focus(2,item.KeyCriterion)">
+              </mat-form-field>
+            </div>
+          </div>
+          <div *ngFor="let item of g.CriterionList; let i=index">
+            <div *ngIf="i>=length">
+              {{i}}
+              <mat-form-field>
+                <input type="text" matInput name="key-{{i}}" [(ngModel)]="item.KeyCriterion" >
+              </mat-form-field>
+              <span>:</span>
+              <mat-form-field>
+                <input type="text" matInput name="value-{{i}}" [(ngModel)]="item.ValueCriterion">
+              </mat-form-field>
+            </div>
+          </div>
+          <button  (click)="clickAddCritarion()" mat-fab style="margin-left:5px">+</button>
+          <button (click)="clickRemoveCritarion()" mat-fab>-</button>
+          <br>
+
+
+          <div>
+            <button style="background-color: rgb(160, 160, 160);margin-left:4px;margin-top:8px" matTooltip="הקודם" mat-button matStepperPrevious>הקודם</button>
+            <button style="background-color:rgb(160, 160, 160);margin-top:8px"matTooltip="הבא" mat-button matStepperNext>הבא</button>
+          </div>
+        </mat-card-content>
+        <mat-card id="focusMessage2"class="focusMessageClass"  >
+        </mat-card>
+        
+      </mat-card>
+    </form>
+  </mat-step>
+  <mat-step>
+
+    <ng-template matStepLabel>שלב הסיום</ng-template>
+    <mat-card class="example-card">
+      <mat-card-content>
+ 
+<form #form3="ngForm">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" [min]="today" type="datetime" [(ngModel)]="g.DeadlineGroup"
+            [ngModelOptions]="{standalone: true}" id="DeadlineGroup" name="DeadlineGroup" placeholder="בחר תאריך אחרון לרישום"
+            #date4="ngModel"(focus)="focus(3,'תאריך לסגירת הקבוצה')" required> 
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="g.DeadlineGroup<today">התאריך שהזנת לא חוקי</mat-error>
+
+        </mat-form-field>
+        <br>
+        <!-- <label for="quantity"> :הכנס מס' נרשמים</label> -->
+        <br>
+        <mat-form-field>
+          <input type="number" [formControl]="quantityRegister" pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$" min="1" max="g.NumMembersGroup"
+            matInput [(ngModel)]="registrGroup.QuantityRegisters"  onkeypress="return event.charCode != 45"
+            placeholder="מספר הנרשמים" name="quantity" (focus)="focus(3,'מספר הנרשמים שלך')" required>
+                   
+        </mat-form-field>
+         <mat-error *ngIf="g.NumMembersGroup<=quantityRegister.value">מספר הנרשמים שהזנת גדול ממספר החברים</mat-error>
+        <br>
+        <label style="color:grey">בחר תמונה שתיצג את הקבוצה</label>
+        <br>
+       <div id="imgOver" (mouseenter)="focus(3,'img')" >
+        <input  #file type='file' (change)="onSelectFile($event, file.files)" >
+      </div>
+        <br>
+        <br>
+       
+         <img [src]="url" height="200"> <br/>
+         <div style="background-color:white" id="pay" (mouseenter)="focus(3,'paypal')" (mouseleave)="focus(3,'another')" >
+         <ngx-paypal [config]="payPalConfig" ></ngx-paypal>
+        </div>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <!-- form3.form.valid||g.NumMembersGroup>quantityRegister.value||g.DeadlineGroup<today" -->
+        <button mat-raised-button matTooltip="צור קבוצה"style="margin-right:15vw;font-size: 17px;" color="accent" (click)="submitCreateGroup()"(mouseenter)="focus(3,'create')" [disabled]="isVaild==true||url==''">צור את הקבוצה שלך</button>
+        <br>
+       
+        <div>
+          <button mat-button  matTooltip="הקודם" style="background-color:rgb(160, 160, 160);margin-left:5px;margin-top:8px" matStepperPrevious>הקודם</button>
+          <button mat-button matTooltip="אתחול" style="background-color:rgb(160, 160, 160);margin-top: 8px" (click)="stepper.reset(); doResetTOStepper()">אתחול</button>
+        </div>
+      </form>
+      </mat-card-content>
+      <div id="focusMessage3"class="focusMessageClass" ></div>
+    </mat-card>
+  </mat-step>
+
+</mat-horizontal-stepper>
+
+</div>
+<div style="height:4vh;margin-bottom:7vh;"> 
+    &nbsp;
+    </div>
+
+

@@ -1,0 +1,10 @@
+<div style="border: 5px solid purple">
+
+  <h1>Hi</h1>
+  <div *ngFor="let item of arr">
+    
+    <app-search [item]="item" (change1)="Func($event)"></app-search>
+
+
+  </div>
+</div>

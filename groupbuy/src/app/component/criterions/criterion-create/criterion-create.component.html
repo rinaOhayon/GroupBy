@@ -1,0 +1,8 @@
+<p>
+  criterion-create works!
+</p>
+<form>
+    <input type="text" (keyup)="addCriterion(1)" [(ngModel)]="c.KeyCriterion" id="KeyCriterion" name="KeyCriterion" >
+    <span>:</span>
+    <input type="text" (keyup)="addCriterion(2)" [(ngModel)]="c.ValueCriterion" id="ValueCriterion" name="ValueCriterion">
+</form>

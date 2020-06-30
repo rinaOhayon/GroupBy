@@ -1,0 +1,112 @@
+
+<mat-card style="text-align:right;width:50vw;position: absolute;right: 25vw;margin-top:3vh">
+  <div id="wrapUP">
+  <div id="wrap" style="margin-right:15vw">
+  <h2 style="color:rgb(177, 175, 175)">עדכון הקבוצה {{g.NameGroup}}</h2>
+<form #updateFormGroup="ngForm">
+
+  
+     <mat-form-field>
+        <input placeholder="שם קבוצה" matInput type="text" [(ngModel)]="g.NameGroup" id="NameGroup" name="NameGroup"
+          required>
+        <button mat-button *ngIf="g.NameGroup" matSuffix mat-icon-button aria-label="Clear" (click)="g.NameGroup=''">
+          <mat-icon matSuffix>close</mat-icon>
+        </button>
+        <!-- <button mat-button *ngIf="g.NameGroup" matSuffix mat-icon-button aria-label="Clear" (click)="g.NameGroup=''">
+          <mat-icon matSuffix>close</mat-icon>
+        </button> -->
+      </mat-form-field>
+     
+      <br>
+
+  <!-- <label>שם קבוצה</label><input placeholder="שם קבוצה" type="text" [(ngModel)]="g.NameGroup" id="NameGroup" name="NameGroup" required><br> -->
+  <mat-form-field>
+      <input type="number"  [formControl]="quantityMember"[(ngModel)]="g.NumMembersGroup" matInput id="NumMembersGroup" name="NumMembersGroup"
+        pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$" min="1"  onkeypress="return event.charCode != 45"
+        placeholder="מספר החברים" required>
+    </mat-form-field>
+
+    <br>
+
+  <!-- <label>מספר החברים ליצירת הקבוצה</label><input type="number" [formControl]="quantityMember" pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$"
+    [(ngModel)]="g.NumMembersGroup" id="NumMembersGroup" name="NumMembersGroup" placeholder="" required><br> -->
+  <!-- <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="g.DeadlineGroup" [min]="today" [ngModelOptions]="{standalone: true}"
+      placeholder="תאריך אחרון ליצירת הקבוצה" required #date2="ngModel">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="g.DeadlineGroup<today">התאריך שהזנת לא חוקי</mat-error>
+  </mat-form-field> -->
+
+
+  <!-- <input type="date" [(ngModel)]="g.DeadlineGroup" id="DeadlineGroup"
+    name="DeadlineGroup" placeholder="DeadlineGroup"> -->
+
+ <!-- <input type="text" [(ngModel)]="g.FreeDescription" id="FreeDescription" name="FreeDescription"
+    placeholder="תאור חופשי" required><br> -->
+
+    <mat-form-field>
+      <textarea type="text" [(ngModel)]="g.FreeDescription"   matInput id="FreeDescription" name="FreeDescription"
+      placeholder="תאור חופשי" required></textarea>
+      <!-- <button mat-button *ngIf="g.FreeDescription" matSuffix mat-icon-button aria-label="Clear" (click)="g.FreeDescription=''"></button>
+        <mat-icon matSuffix>close</mat-icon> -->
+      <!-- </button> -->
+
+    </mat-form-field> 
+
+     <!-- <mat-form-field>
+      <input type="text" matInput [(ngModel)]=cat name="category" id="category">
+    </mat-form-field> -->
+
+
+  <app-select-category [value]="cat" #selectCat (CategorySelected)="categoryChoose($event)"></app-select-category>
+
+  <div *ngFor="let item of g.CriterionList; let i=index">
+    <div *ngIf="i<length">
+      <label>{{item.KeyCriterion}}</label>
+      <span>:&nbsp;&nbsp;</span>
+      <mat-form-field>
+        <input type="text" matInput mat-input [(ngModel)]="item.ValueCriterion" name="ValueCriterion">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div *ngFor="let item of g.CriterionList; let i=index">
+    <div *ngIf="i>=length">
+      {{i}}
+      <mat-form-field>
+        <input type="text" matInput name="key-{{i}}" [(ngModel)]="item.KeyCriterion">
+      </mat-form-field>
+      <span>:&nbsp;&nbsp;</span>
+      <mat-form-field>
+        <input type="text" matInput name="value-{{i}}" [(ngModel)]="item.ValueCriterion">
+      </mat-form-field>
+    </div>
+  </div>
+  <button (click)="clickAddCritarion()"style="margin-left:5px;margin-right:3vw" mat-fab>+</button>
+  <button (click)="clickRemoveCritarion()" mat-fab>-</button>
+  <br>
+ <br>
+ <img mat-card-image [src]="g.imageSrc" id="ImageDatails"  style="height:15vh;width: 12.5vw;margin:auto"
+alt="g.imageSrc">
+<br>
+<input #file type='file' (change)="onSelectFile($event, file.files)">
+<br>
+ <br>
+<!-- [disabled]="quantityMember.errors||!updateFormGroup.valid||g.DeadlineGroup<today||select.selectText==null||select.selectedCategory?.NameCategory!=select.selectText" -->
+  <button mat-raised-button color="accent" style="margin-left:2vw" (click)="submitUpdateGroup()" matTooltip="עדכן קבוצה">עדכן</button>
+  <button mat-raised-button style="background-color:gray;color: white" (click)="Reset()" matTooltip="בטל שינויים">בטל את כל השינויים</button>
+
+</form>
+</div>
+</div>
+</mat-card>
+
+<div id="screenVisible" >
+<div class="spin">
+    <mat-spinner></mat-spinner>
+    <p style="margin-bottom:2vh;font-size:20px;color: #ff4081">מעדכן....</p>
+</div>
+</div>
+<!--   //*1---------------upload image -->
+

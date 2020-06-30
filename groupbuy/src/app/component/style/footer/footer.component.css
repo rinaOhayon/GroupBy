@@ -1,0 +1,106 @@
+:host{
+  position: absolute;
+  display: flex;
+  /* bottom: -161px; */
+  /* top: 100vh; */
+}
+.footer{
+  /* display: flex;  */
+  /* bottom: 0; */
+  position: relative;
+  height: 15vh;
+/* font-size: 1vw; */
+ 
+}
+.details1
+{
+  background-color: rgb(70, 68, 68);
+  height: 40vh;
+  width: 100vw;
+  display: block;
+  /* bottom: 0; */
+  position: relative;
+}
+.GroupBy
+{
+position: absolute;
+/* right: 15vw; */
+top:4vh;
+display: inline-block;
+}
+.Links
+{
+  position: relative;
+  right: 20vw;
+  top:4vh;
+  display: inline-block;
+}
+.Contacts
+{
+      /* right: 16vw; */
+      top: 4vh;
+      display: inline-block;
+      position: absolute;
+      left: 30vw;
+}
+.details2
+{
+  background-color: rgb(37, 36, 36);
+  height: 10vh;
+  display: block;
+  bottom: 0;
+  position: absolute;
+  width: 100vw;
+
+}
+.logo{
+  top:1vh;
+  display: inline-block;
+  /* left:2vw; */
+  width: 8vw;
+  /* position: absolute;       */
+}
+ul {
+  list-style-type: none;
+}
+.nav {
+  /* padding: 0;
+  margin: 0; */
+  list-style: none;
+}
+.navbar a {
+  color: black;
+  text-decoration: none;
+  /* padding: 1.5vh; */
+}
+a{
+    text-decoration: none;
+    color:rgba(158, 154, 154, 0.959);
+}
+ul{
+  padding: 0;
+  color:rgba(158, 154, 154, 0.959);
+
+}
+h2{
+    color: white;
+}
+.mat-icon{
+    color:white;
+}
+p{
+    color:rgba(158, 154, 154, 0.959)
+}
+/* ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: white;
+}
+::ng-deep input.mat-input-element {
+  color: white;
+}
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: white;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label { 
+  color: white; 
+} */

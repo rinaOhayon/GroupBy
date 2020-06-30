@@ -1,0 +1,10 @@
+table {
+    width: 100%;
+    text-align: center;
+  }
+  /* עמודת כותרת יישור טקסט לאמצע */
+ .mat-header-cell {   
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}

@@ -1,0 +1,13 @@
+.allleftSection
+{
+    width:15vw;
+}
+:host{
+    width: 20vw;
+    background-color: blueviolet;
+    display: inline-block;
+    position: absolute;
+    left: auto;
+    top:25vh;
+    /* height: 50vh; */
+}

@@ -1,0 +1,21 @@
+<mat-card style="text-align: center;border:blue 3px solid">
+<div>
+    <h1 style="color: palevioletred">מחיקת קבוצה  {{Group.NameGroup}}</h1>
+    <h2 style="color: palevioletred"> מתאריך פתיחת הקבוצה:{{Group.DateCreateGroup | date: 'dd/MM/yyyy'}}</h2>
+    <span>סך נרשמו</span>
+    <p>{{numregister}}</p>
+ <p style="color: yellow">ולכן עליך לשלם קנס 50 כפול מספר הנרשמים</p>
+ <span>{{pay}}</span>
+</div>
+<ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
+<mat-form-field>
+    <textarea type="text"  matInput  [(ngModel)]="MailToRegisterGroup"
+      placeholder="מייל לחברים בקבוצה"></textarea>
+</mat-form-field>
+ <br>
+ <mat-checkbox >האם אתה בטוח במחיקה?</mat-checkbox>
+ <br>
+<button mat-raised-button color="accent" (click)="DeletGroup()" [disabled]="MailToRegisterGroup.length<2||disable==true">מחיקת הקבוצה ושליחת מייל</button>
+<br>
+</mat-card>

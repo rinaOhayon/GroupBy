@@ -1,0 +1,32 @@
+/* :host{
+  width: 70vw;
+  background-color: beige;
+  display: inline-block;
+  position: absolute;
+  left: 15vw; 
+  top:25vh;
+  /* padding-right: 15vw; 
+}  */
+
+#accordinDiv{
+width: 35vw;
+
+}
+#details
+{
+  padding-right: 4vw;
+}
+.mat-card-image{
+margin:0vw;
+}
+label{
+ font-size: 18px;
+ font-family: 'Assistant';
+}
+#LinkDetails{
+  padding-top: 12px;
+right:5vw;
+border-top:2px dashed #eb3b52;
+text-align: center;
+width: 61vw;
+}

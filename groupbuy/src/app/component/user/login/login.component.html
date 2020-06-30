@@ -1,0 +1,27 @@
+<form #myForm="ngForm">
+    <!-- <div class="logo">
+        <img src="https://img.icons8.com/ios/100/000000/user-male-circle.png">
+      </div> -->
+  <mat-error *ngIf="errorLogin">{{errorLoginContent}}</mat-error>
+ 
+<mat-form-field appearance="outline">
+  <input matInput #ff placeholder="מייל"  [formControl]="email" style="direction:rtl" name="email1" id="email1"
+    required>
+    <mat-icon matSuffix >mail_outline</mat-icon>
+  <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+</mat-form-field>
+
+
+<br><br>
+<mat-form-field appearance="outline">
+  <input matInput placeholder="הכנס סיסמא" [type]="hide ? 'password' : 'text'" style="text-align: right" name="password"
+    [(ngModel)]="u.Password" id="password" required>
+  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </button>
+</mat-form-field>
+
+<br><br>
+<button mat-raised-button color="primary" (click)="submitloginForm()" style="color:#2ba766;" value="כניסה" class="button" [disabled]="!myForm.form.valid || email.invalid">כניסה</button>
+</form>
+

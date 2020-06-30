@@ -1,0 +1,133 @@
+
+  .md-search {
+    height:40px;
+    width:300px;
+    border-radius:15px;
+    padding: 0 35px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background:url(https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_search_black_24px.svg) no-repeat right center;
+    background-position:10px;
+    background-color:#ffffff;
+    
+  }
+  ::ng-deep .mat-icon{
+    margin-left: 1vw;
+    /* color:palevioletred; */
+   }
+  .activeIcons:hover{
+    cursor: pointer;
+    /* background-color: grey; */
+    color: black;
+  }
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: #777;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid pink;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  /* //סייד נאב בשביל היצירת בקשה */
+  /* .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 25vh;
+
+    right: 0;
+    background-color:white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 7vh;
+    box-shadow: 0 8px 1px 0.8px rgba(0,0,0,.2), 0 9px 0px 0 rgba(0,0,0,0.14), 0 1px 40px 0 rgba(0,0,0,.12);
+    /* padding-right: 2vw; */
+    .sidenav {
+      height: 0;
+      width: 50vw;
+      position: fixed;
+      z-index: 0;
+      bottom: 1vh;
+     border-top:rgb(219, 194, 208) 5px solid;
+      background-color:white;
+      overflow-x: hidden;
+      transition:height 0.5s;
+      padding-top:0;
+      text-align:center;
+      }
+      
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: black;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  .spin {
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: 40%;
+    right: 50%; 
+    text-align: center;/* or: left: 50%; */
+    /* margin-top: -..px; /* have of the elements height 
+    margin-right: -..px; have of the elements widht */
+  }

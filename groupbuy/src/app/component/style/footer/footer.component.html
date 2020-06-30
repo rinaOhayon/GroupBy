@@ -1,0 +1,57 @@
+<footer class="footer ">
+  <div class="details1">
+    <div style="padding-right:30vw;padding-left:35vw">
+      <div class="GroupBy">
+
+        <img src="../../../../assets/logo-finish.png" class="logo">
+        <p style="height:4vh;width: 12.5vw;text-align: justify">
+        האתר שלנו פותח במטרה להקל על האיגוד הקבוצתי.<br>
+        GroupBy מציע לכם אפשרויות רבות ביניהן יצירת קבוצה, הצטרפות לקבוצה קיימת ובקשה ליצירת קבוצה שאינה קיימת. <br>
+        הכנס לאתר ותתחיל להנות כבר עכשיו.
+        </p>
+      </div>
+
+      <div class="Links">
+        <h2>לינקים</h2>
+        <ul class="nav nav-right">
+          <li><a [routerLink]="['/']">דף הבית</a></li>
+          <!-- <li><a [routerLink]="['/login']">login</a></li> -->
+          <li (click)="OpenDialogRegister()" style="cursor:pointer">כניסה</li>
+          <li><a [routerLink]="['/group-create']">צור קבוצה</a></li>
+          <li><a [routerLink]="['/group-view']">צפה בקבוצות</a></li>
+          <!-- <li><a [routerLink]="['/subscibe-create']">צור בקשה</a></li> -->
+          <!-- <li><a [routerLink]="['/subscibe-update']">subsrcibe-update</a></li> -->
+          <!-- <li><a [routerLink]="['/subscibe-view']">subsrcibe-view</a></li> -->
+          <li><a [routerLink]="['/subscibe-view-table']">צפה בבקשות</a></li>
+          <li><a [routerLink]="['/performance']">הביצועים שלי</a></li>
+          <!-- <div *ngIf="locals===true" style="left:20vw;position:absolute;"> -->
+
+          <li><a [routerLink]="['/created-group']">קבוצות סגורות</a></li>
+          <!-- </div> -->
+        </ul>
+      </div>
+
+      <div class="Contacts">
+        <h2>צור קשר</h2>
+        <p style="height:4vh;border-bottom: 2px dashed rgba(158, 154, 154, 0.959)">info.groupby@gmail.com</p>
+        <p style="height:4vh;border-bottom: 2px dashed rgba(158, 154, 154, 0.959)">www.GroupBy.co.il</p>
+        <p style="height:4vh;border-bottom: 2px dashed rgba(158, 154, 154, 0.959)">+972-0356-2815</p>
+
+      </div>
+    </div>
+    <div class="details2" style="padding-right:35vw;padding-left:35vw">
+<div style="display:inline-block;position: relative;top:2vh;color: white">
+      <mat-form-field appearance="outline">
+        <mat-label>צור קשר אתנו...</mat-label>
+        <!-- maxlength="45"rows="2"cols="22" -->
+        <input type="text" matInput style="width:25vw" placeholder="צור קשר אתנו"  [(ngModel)]="MailToRegisterGroup" />
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+    </div>
+      <div style="position: relative; display: inline-block;right: 8vw;top:2vh; ">  
+        <p> &copy; כל הזכויות שמורות 2020. <b>GroupBy</b> על ידי <b>N&R</b></p>
+      </div>
+    </div>
+  </div>
+
+</footer>

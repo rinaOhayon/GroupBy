@@ -1,0 +1,107 @@
+<div class="box">
+  <!-- <a href="javascript:void(0)" class="closebtn" style="font-size: 36px">&times;</a> -->
+  <div id="header">
+    <div id="cont-lock" >
+      <div class="logo">
+     <img src="../../../../assets/logo-finish.png" style="width: 100%">
+    </div></div>
+    <mat-icon id="closeButton" (click)="closeDialog()">clear</mat-icon>
+    <div id="bottom-head">
+      <h1  id="register">משתמש חדש</h1>
+      <h1  id="login">כניסה</h1>
+    </div>
+  </div>
+  <div class="FormRegister">
+
+    <div id="idForm">
+      <form #RegisterForm="ngForm">
+        <!-- <mat-form-field>
+      <input  matInput   [(ngModel)]="u.NameUser"  id="nameuser"  name="nameuser" placeholder="שם משתמש"  required>
+
+      </mat-form-field> -->
+      <mat-error *ngIf="errorLogin">{{errorLoginContent}}</mat-error>
+        <mat-form-field appearance="outline">
+          <mat-label>משתמש חדש</mat-label>
+          <input matInput [(ngModel)]="u.NameUser" id="nameuser" name="nameuser" placeholder="שם משתמש" required>
+          <mat-icon matSuffix>perm_identity</mat-icon>
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label> הכנס סיסמא</mat-label>
+          <input matInput placeholder="הכנס סיסמא" [type]="hide ? 'password' : 'text'" style="text-align: right"
+            name="password" [(ngModel)]="u.Password" id="password1" required >
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br><br>
+        <!-- <input type="password" [(ngModel)]="u.Password"  id="password"  name="password" placeholder="סיסמה"><br><br> -->
+        <!-- <input type="text" [(ngModel)]="u.Email"  id="password"  name="email" placeholder="מייל"> -->
+        <mat-form-field appearance="outline">
+          <mat-label>מייל</mat-label>
+          <input matInput #ff placeholder="מייל" [(ngModel)]="u.Email" [formControl]="email" style="direction:rtl"
+            name="email1" id="email3" required>
+          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+
+        </mat-form-field>
+
+        <br><br>
+        <mat-form-field appearance="outline">
+          <mat-label>טלפון</mat-label>
+          <input type="text" matInput hintLabel="Max 10 characters" maxlength="10" #inputPhone [(ngModel)]="u.Phone"
+            pattern="^\d+$" id="phone" name="phone" placeholder="טלפון" required>
+          <mat-icon matSuffix>local_phone</mat-icon>
+          <mat-hint align="end">{{inputPhone.value?.length || 0}}/10</mat-hint>
+
+        </mat-form-field>
+        <br><br>
+        <!-- <mat-error  *ngIf="content">{{content}}</mat-error> -->
+
+
+        <button mat-raised-button color="primary" style="color:#2ba766;" class="button" (click)="submitregisterForm()"
+          [disabled]="!RegisterForm.form.valid||email.invalid" id="buttonlogintoregister">הרשמה</button>
+      </form>
+    </div>
+
+    <div id="idlogin">
+      <app-login></app-login>
+      <!-- <button mat-raised-button color="warn" [mat-dialog-close]="true" >ביטול</button> -->
+
+    </div>
+    <div id="footer-box">
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+  <!-- <div class="box">
+  <div id="header">
+    <div id="cont-lock"><i class="material-icons lock">lock</i></div>
+    <div id="bottom-head"><h1 id="logintoregister">Login</h1></div>
+  </div> 
+   <form  method="post">
+    <div class="group">      
+      <input class="inputMaterial" type="text" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Username</label>
+    </div>
+	    <div class="group">      
+      <input class="inputMaterial" type="password" [(ngModel)]="name" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Password</label>
+    </div>
+    <button id="buttonlogintoregister" (submit)="ggg()" type="submit">Login</button>
+  </form>
+  <div id="footer-box"><p class="footer-text">Not a member?<span class="sign-up"> Sign up now</span></p></div>
+</div> -->

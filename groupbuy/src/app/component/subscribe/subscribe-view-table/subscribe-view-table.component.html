@@ -1,0 +1,92 @@
+<div id="AllGroup" style="display:block;position: relative; right:25vw;width:50vw;margin-top:5vh">
+
+
+  <div style="position: relative">
+    <div id="OpenSearch" (click)="openNav()" style="display: inline-block">
+      <button mat-raised-button color="accent" name="create">ליצירת בקשה חדשה</button>
+    </div>
+    <div style="display: inline-block;position: absolute;left: 0">
+      <mat-icon>search</mat-icon>
+      <input class="md-search" placeholder="חפש..." (keyup)="search()" [(ngModel)]="searchBy" name="search" />
+    </div>
+  </div>
+  <!-- <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"> -->
+  <div style="position: relative;top:3vh;margin-bottom: 4vh">
+    <table mat-table [dataSource]="subscibeService.dataSource" multiTemplateDataRows class="mat-elevation-z8">
+      columnsToDisplay
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay;let i=index">
+        <div *ngIf="i==2">
+          <td mat-cell *matCellDef="let element"> {{element[column]| date: 'dd/MM/yyyy'}} </td>
+        </div>
+        <div *ngIf="i==5">
+          <td mat-cell *matCellDef="let element">
+            <div *ngIf="idUser===element.IdUser" style="display:inline-block">
+              <mat-icon (click)="UpdateopenDialogGroup(element)" class="activeIcons" matTooltip="עדכון הבקשה"
+                style="color:#7ee3ae">border_color
+              </mat-icon>
+            </div>
+            <span></span>
+            <div style="display:inline-block" *ngIf="idUser===element.IdUser">
+              <mat-icon class="activeIcons" (click)="DeleteSubscibe(element.IdSubscribe)" matTooltip="הסרת הבקשה"
+                style="color:#7ee3ae">delete
+              </mat-icon>
+            </div>
+          </td>
+
+        </div>
+        <th mat-header-cell *matHeaderCellDef>{{columnsNames[i]}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+
+      </ng-container>
+      <th>jfdkjgk</th>
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+          <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div>
+              <div *ngFor="let itemCategory of element.CriterionSubscribe">
+                <span>{{itemCategory.KeyCriterion}} </span> :
+                <span>{{itemCategory.ValueCriterion}}</span>
+              </div>
+              <!-- <div class="example-element-position"> {{element.IdSubscribe}}  </div>
+          <div class="example-element-symbol"> {{element.NameSubscribe}}</div>
+          <div class="example-element-name"> {{element.DateCreateSubscribe}}</div>
+          <div class="example-element-weight"> {{element.TextFree}} </div> -->
+
+            </div>
+            <div class="example-element-description">
+              {{element.description}}
+              <!-- <span class="example-element-description-attribution"> -- Wikipedia </span> -->
+            </div>
+          </div>
+        </td>
+        <td>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [pageSize]="10"></mat-paginator>
+  </div>
+  
+</div>
+<div style="height:4vh;margin-bottom:7vh;">
+  &nbsp;
+</div>
+<div id="mySidenav" class="sidenav" style="right:25vw;width:50vw;margin-top:5vh">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <div *ngIf="locals===true">
+
+      <app-subscribe-create (close)="closeNav()"></app-subscribe-create>
+    </div>
+    <div *ngIf="locals===false">
+      <button mat-raised-button color="accent" name="create" (click)="Register()">הרשם לאתר</button>
+
+    </div>
+  </div>

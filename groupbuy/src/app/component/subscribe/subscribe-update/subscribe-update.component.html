@@ -1,0 +1,72 @@
+<div style="width:35vw;height: 60vh;">
+<form #updatesubscribe="ngForm">
+  <label>שם הדרישה</label>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <mat-form-field>
+    <input type="text" matInput [(ngModel)]="subscribe.NameSubscribe" id="NameSubscribe" name="NameSubscribe"
+      placeholder="שם הדרישה" required>
+  </mat-form-field>
+  <br>
+  <label>תאריך אחרון ליצירת הדרישה</label>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="subscribe.Deadline" [ngModelOptions]="{standalone: true}"
+      placeholder="תאריך למחיקה" [min]="today" required #data="ngModel">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="subscribe.Deadline<today">התאריך שהזנת לא חוקי</mat-error>
+  </mat-form-field>
+  <br>
+  <label>תיאור חופשי</label>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <mat-form-field>
+    <input type="text" matInput [(ngModel)]="subscribe.TextFree" id="TextFree" name="TextFree" placeholder="תאור לדרישה"
+      [ngModelOptions]="{standalone: true}" required>
+  </mat-form-field><br>
+  <label>?המערכת תשלח הודעה על כל בקשה חדשה הדומה לדרישתך ,האם ברצונך לשנות את תדירות</label>
+  <!-- <mat-checkbox [checked]="yes">Hide required marker</mat-checkbox> -->
+  <br>
+  <label>אני מעונין לקבל הודעה כאשר יש </label>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <mat-form-field>
+    <input type="number" min="1"  matInput [(ngModel)]="subscribe.GetMessage" id="GetMessage" name="GetMessage"
+      placeholder="הכנס מספר בקשות "  [formControl]="frequency" pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$" onkeypress="return event.charCode != 45" required>
+      <!-- <mat-error *ngIf="subscribe.GetMessage<num">cxvcxcbvx</mat-error>//זה לא עובד ולא ברור למה -->
+    </mat-form-field><br>
+    <!-- <mat-form-field>
+      <input type="text" matInput [(ngModel)]="cat" name="category" id="category">
+    </mat-form-field> -->
+    <label>קטגוריה </label>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <app-select-category [value]="cat" #selectCat (CategorySelected)="categoryChoose($event)"></app-select-category>
+      
+  <div *ngFor="let item of subscribe.CriterionSubscribe; let i=index">
+  
+    <div style="display:block">
+      {{i}}
+      <mat-form-field>
+        <input type="text" matInput name="key-{{i}}" [(ngModel)]="item.KeyCriterion" name="a" placeholder="מפתח">
+      </mat-form-field>
+      <span>:</span>
+      <mat-form-field>
+        <input type="text" matInput name="value-{{i}}" [(ngModel)]="item.ValueCriterion" name="b" placeholder="ערך">
+      </mat-form-field>
+      <br>
+    </div>
+ 
+  </div>
+  <br>
+  <label>הוסף קרטריונים</label>
+    <br>
+  <div style="display: inline-block">
+      <button title="הוסף קריטריון" (click)="clickAddCritarion()" style="font-size:15px;font-weight:bold;margin:1vw" mat-fab >+</button>
+      <span>&nbsp;&nbsp;</span>
+      <button title="הסר קריטריון" (click)="clickRemoveCritarion()" mat-fab style="font-size:15px;font-weight:bold;margin:1vw" >-</button><br>
+  </div>
+  <br>
+  <button mat-raised-button color="warn" color="accent" style="margin-left:7px;margin-right:6vw;"  [disabled]="frequency.errors||!updatesubscribe.form.valid || subscribe.GetMessage==0||subscribe.Deadline<today" (click)="UpdateSubscribe()">עדכן</button>
+  <button mat-raised-button color="warn" color="accent"   [mat-dialog-close]="true" >ביטול</button>
+
+
+</form>
+</div>

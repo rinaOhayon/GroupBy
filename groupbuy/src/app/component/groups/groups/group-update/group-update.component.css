@@ -1,0 +1,40 @@
+/*עיצוב הדף*/
+/* :host{
+    width: 70vw;
+    display: inline-block;
+    position: absolute;
+     left: 15vw; 
+     top:25vh;
+  }  */
+  .spin {
+      
+    display: block;
+    position: fixed;
+    z-index: 1200;
+    top: 40%;
+    right: 50%; 
+    text-align: center;
+    color: #df0f54;
+    opacity: 1;
+    /* or: left: 50%; */
+    /* margin-top: -..px; /* have of the elements height 
+    margin-right: -..px; have of the elements widht */
+  }
+  #screenVisible{
+    z-index: 1031;
+      display: none;
+      width: 100vw;
+      height: 80vh;
+      background-color: rgb(199, 199, 199);
+      opacity: 0.5;
+  }
+  #wrap {
+    position: relative;
+    min-height: 50vh;
+  }
+  
+  #wrapUP {
+    position: relative;
+    max-height: 70vh;
+    overflow: auto;
+  }

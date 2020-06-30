@@ -1,0 +1,189 @@
+
+/* :host{
+} */
+p{
+  display: inline;
+  }
+  .chatLink:hover{
+  cursor: pointer;
+  }
+  .navbar {
+    padding-top: 2vh;
+    height: 5vh;
+    width: 100%;
+  }
+  nav links
+  .nav {
+    /* padding: 0;
+    margin: 0; */
+    list-style: none;
+  }
+  
+  .logo{
+    top:1vh;
+    display: inline-block;
+    left:2vw;
+    width: 8vw;
+    position: absolute;      
+  }
+  .banner{
+    
+    padding-top: 2vh;
+    display: block;
+    height:8vw;
+  }
+  .nav {
+    display: inline-block;
+    margin: 0;
+  }
+  .navbar a {
+    color: black;
+    text-decoration: none;
+    /* padding: 1.5vh; */
+  }
+  .navbar a:hover, li:hover {
+    background-color: #a3989a;
+    color: #eb3b52;
+  }
+  ul {
+    list-style-type: none;
+  }
+  li{
+    float:right;
+    color: black;
+    padding: 1vh;
+    width: 4.5vw;
+    text-align: center;
+    cursor: pointer;
+    /* font-size:0.9vw; */
+  }
+  .clickLi{
+    background-color: #eb3b52;
+    color:white;
+  }
+  /* a:focus{
+    background-color: #ff4081;
+  
+  
+  }
+  a.active{
+    background-color:#ff4081;
+  
+  } */
+  
+  .nav-right {
+    float: right;
+    line-height: 39px;
+  }
+  body {
+    font-family: 'Roboto ', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .container {
+    margin: 0 auto;
+  }
+  /*
+  * This is not complete design, it needed to be fixed, especially rwd.
+  */
+  
+  /* basic style */
+  /* body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto ', sans-serif;
+    font-size: 14px;
+    color:green;
+    line-height: 1.4;
+  
+    direction: ltr;
+  }
+  
+  .container {
+    margin: 0 auto;
+  }
+  
+  
+  
+  /* navbar
+  .navbar {
+    padding: 20px 0;
+    width: 100%;
+    height: auto;
+    top:4vh;
+  }
+  
+  .logo{
+    top:4vh;
+  
+    display: inline-block;
+  left:5vw;
+  position: absolute;      
+  }
+  .nav {
+    display: inline-block;
+    margin: 0;
+  }
+  
+  nav links
+  .nav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .nav li {
+    display: inline-block;
+    margin-left: 40px;
+  }
+  
+  .navbar a {
+    color: black;
+    text-decoration: none;
+    padding: 1.5vh;
+  }
+  
+  .navbar a:hover {
+    background-color: rgb(129, 236, 129);
+    color: white;
+  }*/
+  
+  /* if you want pull right nav links 
+  .nav-right {
+    float: right;
+    line-height: 39px;
+  } */
+  
+  
+  
+  /* responsive */
+  /* @media screen and (max-width: 677px) {
+    .container {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .container {
+      width: 90%;
+    }
+  }
+  
+  @media screen and (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+  
+  @media screen and (min-width: 992px) {
+    .container {
+      width: 960px;
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  } */
+  

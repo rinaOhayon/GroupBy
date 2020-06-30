@@ -1,0 +1,162 @@
+<div id="AllGroup" style="display:inline-block;position: relative; width: 100%;top:6vh;height: 107vh;">
+  <div class="sideSearch" style="position: relative;display: inline-block; top:2vh;">
+    <span id="OpenSearch" (click)="openNav()">
+      <mat-icon style="font-size:35px;">search</mat-icon>
+      <p>חפש קבוצות</p>
+    </span>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+      <mat-form-field>
+        <input type="text" matInput (keyup)="searchName()" matTooltip="חיפוש לפי שם הקבוצה" [(ngModel)]="searchByName"
+          placeholder="חיפוש שם קבוצה">
+      </mat-form-field>
+      <span> </span>
+      <mat-form-field>
+        <input type="number" matInput (keyup)="searchKodGroup()" matTooltip="חיפוש לפי קוד קבוצה"
+          [(ngModel)]="searchByKod" placeholder="חיפוש קוד קבוצה">
+      </mat-form-field>
+      <span> </span>
+      <mat-form-field>
+        <input type="text" matInput [(ngModel)]="searchByFreeText" matTooltip="חיפוש חופשי" placeholder="חיפוש חופשי"
+          (keyup.enter)="search()" (mouseleave)="search()">
+      </mat-form-field>
+      <!-- <button (click)="searchFreeText()">חיפוש</button> -->
+      <app-category [clear]="needClear" (ParentCategoryChoose)="searchParentCategory($event)"
+        (SubCategoryChoose)="searchSubCategory($event)"></app-category>
+
+
+
+      <!-- מיון -->
+
+      <br>
+      <p style="display:block">מיון לפי:</p>
+      <div style="display:block">
+        <mat-radio-group [(ngModel)]="labelPosition" style="display:block;position:absolute;right:2vw;">
+          <mat-radio-button class="example-margin" value="createGroup" (click)="ClickRadio('createGroup')">
+            תאריך יצירת קבוצה</mat-radio-button><br>
+          <mat-radio-button class="example-margin" value="deadlineGroup" (click)="ClickRadio('deadlineGroup')">
+            תאריך אחרון לרישום
+          </mat-radio-button><br>
+          <mat-radio-button class="example-margin" value="PercentMembers" (click)="ClickRadio('PercentMembers')"
+            checked="true">
+            אחוז הנרשמים</mat-radio-button><br>
+        </mat-radio-group>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div style="display:block">
+        <mat-checkbox style="display:block;" (change)="ReverseListGroup(isChecked?'A':'B')">הצג בסדר הפוך</mat-checkbox>
+        <br><br>
+        <button style="display:block;position: absolute;right: 5vw;" mat-raised-button (click)="clear()">נקה
+          הכל</button>
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- <div id="imageOverDiv" style="height: 5vw;width: 100%;">
+  <img mat-card-image src="../group/image/MP084.JPG" id="ImageOver" style="height:100%;width:100%" alt="item.imageSrc">
+</div> -->
+  <div class="spin" *ngIf="finish===false">
+    <mat-spinner></mat-spinner>
+    <p style="margin-bottom:2vh;font-size:20px;color: #ff4081">טוען...</p>
+  </div>
+
+
+  <div *ngIf="finish===true" style="width: 50vw;right: 25vw;position: absolute;">
+    <mat-grid-list cols="3" rowHeight="240px">
+      <mat-grid-tile [colspan]="1" [rowspan]=2 *ngFor="let item of DataPaginatorList">
+        <mat-card class="example-card">
+          <mat-card-header style="height: 6vh;white-space: nowrap;">
+          
+            <div mat-card-avatar class="example-header-image"
+              [ngStyle]="{'background-color': GetColor(item.NameGroup)}">{{item.NameGroup[0]}}</div>
+            <mat-card-title>{{item.NameGroup}}</mat-card-title>
+            <mat-card-subtitle>קבוצה {{item.IdGroup}}</mat-card-subtitle>
+            <div *ngIf="!item.basket">
+              <mat-icon (click)="func.addToBasket(item)" style="cursor: pointer" matTooltip="הוסף לסל">add_shopping_cart
+              </mat-icon>
+            </div>
+            <div *ngIf="item.basket">
+              <mat-icon (click)="func.removeFromBasket(item)" style="cursor: pointer" matTooltip="הסר מהסל">
+                remove_shopping_cart</mat-icon>
+            </div>
+          </mat-card-header>
+          <div style="display:inline-block;">
+            <img mat-card-image [src]="item.imageSrc" id="ImageDatails" (mouseover)="changedivImage($event)"
+              style="height:15vh;width: 12.5vw;margin:auto" alt="item.imageSrc">
+          </div>
+          <mat-card-content style="height:16vh;padding-right: 1.5vw;">
+            <mat-icon matTooltip="תאריך אחרון לרישום">event_note</mat-icon>
+            <!-- <p>{{item.DateCreateGroup | date: 'dd/MM/yyyy'}}</p><br>
+              <label> תאריך סגירת הקבוצה</label> -->
+            <p>{{item.DeadlineGroup | date: 'dd/MM/yyyy'}}</p><br>
+            <mat-icon class="md48" matTooltip="קטגוריה">star_border</mat-icon>
+            <p>{{item.CategorySelected.NameCategory}}</p><br>
+            <!-- <label>קריטריונים</label> -->
+            <div *ngFor="let criterion of item.CriterionList">
+            
+              <div *ngIf="criterion.KeyCriterion!='מחיר רגיל'">
+
+                <mat-icon matTooltip={{criterion.KeyCriterion}}>{{icons[criterion.KeyCriterion]}}</mat-icon>
+                <p>{{criterion.ValueCriterion}}</p>
+              </div>
+
+            </div>
+
+            <mat-icon matBadge={{item.NumMemberRegister}} style="display:inline-block" matTooltip="נרשמים לקבוצה"
+              style="font-size:1.5vw" matBadgePosition="before" matBadgeColor="accent">group</mat-icon>
+            מתוך <p>{{item.NumMembers}}</p><br>
+          </mat-card-content>
+          <mat-card-footer style="border-top:solid 1px rgb(51, 50, 50)">
+            <div style="align-items:baseline;margin-right: 1vw;color:grey">
+              <mat-icon class="activeIcons" (click)="GetDetails(item)" matTooltip="פרטים">details</mat-icon>
+              <!-- <button mat-stroked-button color="accent" (click)=GetDetails(item)> {{item.IdGroup}}קבל פרטי קבוצה -
+          </button> -->
+              <div *ngIf="item.Register===false" style="display:inline-block">
+                <mat-icon class="activeIcons" (click)="groupRegister(item)" matTooltip="רישום">group_add</mat-icon>
+                <!-- <button mat-raised-button color="primary" (click)="groupRegister(item)">רישום</button> -->
+              </div>
+              <!-- אם נרשם לקבוצה זו יש לו אפשרות לערוך פרטי רישום או למחוק בתנאי שהוא לא מנהל הקבוצה -->
+              <div *ngIf="item.Register===true&&item.IdManager!=idUserSurfing" style="display:inline-block">
+                <mat-icon class="activeIcons" (click)="RemoveFromGroup(item)" matTooltip="צא מקבוצה">person_add_disabled
+                </mat-icon>
+                <!-- <button mat-raised-button color="primary" (click)="RemoveFromGroup(item)">צא מקבוצה</button> -->
+              </div>
+              <div *ngIf="item.Register===true" style="display:inline-block">
+                <mat-icon class="activeIcons" (click)="UpdateopenDialogGroup(item)" matTooltip="עדכון פרטי רישום">edit
+                </mat-icon>
+                <!-- <button mat-raised-button color="primary" (click)="UpdateopenDialogGroup(item)">עדכן פרטי רישום</button> -->
+              </div>
+              <!-- אם הוא מנהל הקבוצה יש לו אפשרות לערוך או למחוק את הקבוצה או לצפות בחברים הרשומים -->
+              <div *ngIf="item.IdManager==idUserSurfing" style="display:inline-block">
+                <mat-icon class="activeIcons" (click)="UpdateGroup(item)" matTooltip="עריכת פרטי קבוצה">
+                  border_color</mat-icon>
+                <mat-icon class="activeIcons" (click)="DeleteGroup(item)" matTooltip="מחיקת קבוצה">delete</mat-icon>
+                <!-- <button mat-raised-button color="accent" (click)="UpdateGroup(item.IdGroup)">עריכת / מחיקת קבוצה</button> -->
+                <mat-icon class="activeIcons" (click)="AllRegisterOfGroup(item)" matTooltip="צפה בחברים">group
+                </mat-icon>
+                <!-- <button style="display:inline" mat-raised-button color="accent" (click)="AllRegisterOfGroup(item)">צפה
+              בחברים הרשומים</button> -->
+              </div>
+            </div>
+          </mat-card-footer>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+</div>
+<br>
+
+<div style="display:block;position: absolute;right: 45vw;">
+  <mat-paginator [length]="lengthItems" [pageSize]="6" (page)="pageEvent=Getdata($event)" [hidePageSize]="false"
+    [length]="length" showFirstLastButtons>
+  </mat-paginator>
+</div>
+<div style="height:4vh;margin-bottom:7vh;">
+  &nbsp;
+</div>

@@ -1,0 +1,154 @@
+/*maat-card*/
+.example-card {
+  width: 13vw;
+}
+::ng-deep .mat-icon{
+ margin-left: 1vw;
+}
+.activeIcons:hover{
+  cursor: pointer;
+  /* background-color: grey; */
+  color: black;
+}
+/* ::ng-deep .mat-icon:hover{
+  background-color:gainsboro;
+  cursor: pointer;
+} */
+/* mat-grid-tile.mat-grid-tile.ng-star-inserted{
+  padding: 0px;
+  width: auto;
+} */
+.example-header-image {
+   /* background-image: url('image/MP084.JPG');  */
+  background-size: cover;
+  background-color: darkkhaki;
+  /* font-family: 'Karla', sans-serif; */
+font-size: 30px;
+font-weight: bold;
+text-align: center;
+}
+.mat-card-avatar {
+  height: 45px;
+  width: 46px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+/* ::ng-deep md-grid-tile.mat-grid-tile .mat-figure {
+  align-items: initial;  /*vertical alignment
+  justify-content: initial;  /*horizontal alignment
+} */
+.mat-card{
+  font-family: 'Assistant';
+  padding: 16px 10px 2px 10px;
+  /* margin: 0vw 3vw 3vw 0vw; */
+}
+.mat-card-footer {
+  display: block;
+  margin: 0 1px 1px 0px;
+  padding-top: 7px;
+}
+::ng-deep  .mat-card-image {
+  width: 5vw;
+border-color: #a09d9d;
+border-width: 3px;
+border-style: solid;
+color: #df0f54;
+}
+::ng-deep .mat-raised-button{
+  background-color:#eb3b52; 
+}
+
+.example-section {
+display: flex;
+align-content: center;
+align-items: center;
+height: 60px;
+}
+.mat-footer{
+padding: 1.5vw;
+margin-top: 1vh;
+}
+.example-margin {
+margin: 0 26px;
+padding-bottom: 4px;
+}
+/*עיצוב הדף*/
+/* :host{
+width: 70vw;
+display: inline-block;
+position: absolute;
+ left: 15vw; 
+ top:25vh;
+}  */
+p,label{
+    display: inline;
+}
+.mat-paginator{
+  direction: rtl;
+  text-align: center;
+
+}
+::ng-deep .mat-form-field{
+  margin-left: 1vw;
+}
+
+#OpenSearch{
+  font-size:30px;
+  cursor:pointer;
+  right: 3vw;
+position: relative;
+}
+/* סייד נאב בשביל החיפוש */
+.sidenav {
+  height: 60vh;
+  width: 0;
+  position: relative;
+  z-index: 1;
+  /* top: 25vh; */
+  right: 0;
+  background-color:white;
+  overflow-x: hidden;
+  transition: 0.5s;
+ top: 1vh;
+  box-shadow: 0 8px 1px 0.8px rgba(0,0,0,.2), 0 9px 0px 0 rgba(0,0,0,0.14), 0 1px 40px 0 rgba(0,0,0,.12);
+  /* padding-right: 2vw; */
+  /* display: inline-block; */
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: black;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.spin {
+  display: block;
+  position: absolute;
+  z-index: 1031;
+  top: 25%;
+  right: 50%; 
+  text-align: center;
+  color: #df0f54;/* or: left: 50%; */
+  /* margin-top: -..px; /* have of the elements height 
+  margin-right: -..px; have of the elements widht */
+}

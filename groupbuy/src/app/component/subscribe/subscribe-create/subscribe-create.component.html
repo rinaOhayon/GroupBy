@@ -1,0 +1,68 @@
+<!-- <div *ngIf="IsLocalStorage===false">
+  <button mat-raised-button color="accent" name="create" (click)="Register()">הרשם לאתר על מנת ליצור בקשה חדשה</button>
+</div>
+<div *ngIf="IsLocalStorage===true"> -->
+  <form #subscribeForm="ngForm">
+
+
+    <mat-form-field>
+      <input type="text" matInput [(ngModel)]="subscribe.NameSubscribe" id="NameSubscribe" name="NameSubscribe"
+        placeholder="שם הדרישה" required>
+    </mat-form-field>
+    <br>
+    <!-- <label>תיאור הדרישה</label>
+  <mat-form-field>
+ <input type="text" matInput [(ngModel)]="subscribe.TextFree"  id="TextFree"  name="TextFree" placeholder="TextFree" required>
+  </mat-form-field>
+  <br> -->
+    <mat-form-field>
+      <textarea matInput placeholder="תאור חופשי" [(ngModel)]="subscribe.TextFree" id="TextFree" name="TextFree"
+        maxlength="25" rows="2" cols="10" required></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" type="datetime" [min]="today" [(ngModel)]="subscribe.Deadline "
+        [ngModelOptions]="{standalone: true}" placeholder="תאריך אחרן לבקשה" required #date="ngModel">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="subscribe.Deadline<today">התאריך שהזנת לא חוקי</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <app-select-category #selectCat (CategorySelected)="categoryChoose($event)"></app-select-category>
+    <mat-error *ngIf="select.selectText&&!select.selectedCategory">בחר קטגוריה תקינה</mat-error>
+    <!-- <label>איזה קטגוריה לבנתיים</label><input type="number" [(ngModel)]="subscribe.NumMembersGroup"  id="NumMembersGroup"  name="NumMembersGroup" placeholder=""><br> -->
+    <br>
+    <label>מלא קטריונים</label>
+    <br>
+    <div *ngFor="let item of subscribe.CriterionSubscribe; let i=index">
+      <div>
+        {{i}}
+        <input type="text" name="key-{{i}}" [(ngModel)]="item.KeyCriterion">
+        <span>:</span>
+
+        <input type="text" name="value-{{i}}" [(ngModel)]="item.ValueCriterion">
+        <br>
+      </div>
+
+    </div>
+    <br>
+    <button (click)="clickAddCritarion()" mat-fab style="margin-left:8px">+</button>
+    
+    <button (click)="clickRemoveCritarion()" mat-fab>-</button>
+    <br><br>
+    <label>המערכת תשלח הודעה כשיש הודעה המתאימה לדרישתךלפי מספר הדרישות שתכניס:</label>
+      <br>
+    <mat-form-field>
+    <input type="number" [formControl]="frequency" pattern="^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$" matInput [(ngModel)]="subscribe.GetMessage"  min="0" max="50" id="GetMessage"  name="GetMessage" placeholder="מכמה בקשות דומות תקבל הודעה" required >
+    </mat-form-field> 
+     <br>
+    <button mat-raised-button color="accent" (click)="SumbitCreateNewSubscibe()" [disabled]="frequency.errors||!subscribeForm.form.valid||subscribe.Deadline<today||select.selectText==null||select.selectedCategory?.NameCategory!=select.selectText">צור
+      בקשה</button>
+
+  </form>
+<!-- </div> -->
+<!-- <div>
+    <button mat-raised-button color="accent" name="create" >הרשם לאתר על מנת ליצור בקשה חדשה</button>
+</div> -->
